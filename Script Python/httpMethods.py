@@ -6,11 +6,11 @@ def scan_metodi_http(ip_bersaglio):
 	for method in metodi_http:
 
 		try:
-			url=f"http://{target_ip}/"
-			risposta = requests.request(method, url, verify=False)
+			url=f"http://{ip_bersaglio}/"
+			response = requests.request(method, url, verify=False)
 			print(f"{method}: {response.status.code}")
 		except requests.exceptions.RequestException as e:
 			print(f"{method}: Errore - {e}")
 if __name__ == "__main__":
 	ip_bersaglio=input("Inserici l'indirizzo ip target: ")
-	metodi_http(ip_bersaglio)
+	scan_metodi_http(ip_bersaglio)
