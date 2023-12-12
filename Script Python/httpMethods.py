@@ -8,7 +8,7 @@ def scan_metodi_http(ip_bersaglio):
 		try:
 			url=f"http://{ip_bersaglio}/"
 			response = requests.request(method, url, verify=False)
-			print(f"{method}: {response.status.code}")
+			print(f"{method}: {response.status_code}")
 		except requests.exceptions.RequestException as e:
 			print(f"{method}: Errore - {e}")
 if __name__ == "__main__":
