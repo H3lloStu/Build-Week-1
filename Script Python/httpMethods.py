@@ -2,7 +2,7 @@ import requests
 
 def scan_metodi_http(ip_bersaglio):
 	metodi_http =["GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]
-
+#iterazione per controllare i metodi attivi
 	for method in metodi_http:
 
 		try:
